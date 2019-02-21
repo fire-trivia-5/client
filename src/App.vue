@@ -11,7 +11,8 @@
               :class="`elevation-${hover ? 12 : 2}`"
               dark blue-grey lighten-4 
               style="height: 95vh;background: linear-gradient(to right, #ffff1c, #00c3ff)">
-              <Home/>
+              <router-view></router-view>
+
             </v-card>
           </v-hover>
         </v-flex>
@@ -21,13 +22,13 @@
 
 <script>
 import Home from './views/Home.vue'
-import PlayRoom from './views/Play.vue'
+import playingroom from './views/Play.vue'
 
 export default {
   name: 'App',
   components: {
     Home,
-    PlayRoom
+    playingroom
   }
 }
 </script>

@@ -1,36 +1,36 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import db from '@/api/firestore'
+import db from '../api/firestore'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {  
+  state: {
     roomList: [],
-    playermove: 'smile',
+    quiz: [],
     playerscore: 0,
     dataUser: {}
   },
   mutations: {
-    mutateRoom(state, payload) {
+    mutateRoom (state, payload) {
       state.roomList = payload
     },
-    initialData(state, arrRoom) {
+    initialData (state, arrRoom) {
       state.roomList = arrRoom
     },
-    mutateDataUser(state, payload) {
+    mutateDataUser (state, payload) {
       state.dataUser = payload
     },
-    changeMove(state, playermove) {
-      state.playermove = playermove
-    },
-    changeScore(state, playerscore) {
+    changeScore (state, playerscore) {
       state.playerscore = playerscore
     },
+    addQuiz (state, payload) {
+      state.quiz = payload
+    }
   },
   actions: {
-    //dipakai di view/home -> component/createroom
-    createRoom({ commit }, dataObj) {
+    createRoom ({ commit }, dataObj) {
       db
         .collection('Rooms')
         .add({
@@ -55,39 +55,47 @@ export default new Vuex.Store({
           console.error(`error writing document: ${err}`)
         })
     },
-    //dipakai di view/home -> component/roomlist
-    getRoom({ commit }) {
+    getRoom ({ commit }) {
       db
         .collection('Rooms')
         .onSnapshot(function (querySnapshot) {
           const data = querySnapshot.docs.map(function (doc) {
-            return { id: doc.data().id, ...doc.data() }
+            return { id: doc.id, ...doc.data() }
           })
           commit('initialData', data)
         })
     },
-    createUser({commit}, name){
+    createUser (name) {
       db
-        .collection("Users")
-        .add({
+        .collection ("Users")
+        .add ({
           name : name
         })
-        .then((document) => {
-          console.log(`document successfuly written with id ${document.id}`)
+        .then ((document) => {
+          console.log (`document successfuly written with id ${document.id}`)
         })
-        .catch(err => {
-          console.log(`error writing document ${err}`)
+        .catch (err => {
+          console.log (`error writing document ${err}`)
         })
     },
-    //dipakai di component/roomList
-    setUser({ commit }, payload) {
+    setUser ({ commit }, payload) {
       commit('mutateDataUser', payload)
     },
-    changeMove({ commit }, playermove) {
-      commit('changeMove', playermove)
-    },
-    changeScore({ commit }, playerscore) {
+    changeScore ({ commit }, playerscore) {
       commit('changeScore', playerscore)
     },
+    getQuiz (context) {
+      axios
+        .get('https://opentdb.com/api_token.php?command=request')
+        .then(({ data }) => {
+          return axios.get(`https://opentdb.com/api.php?amount=10&token=${data.token}`)
+        })
+        .then(({ data }) => {
+          context.commit('addQuiz', data.results)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 })

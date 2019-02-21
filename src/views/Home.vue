@@ -7,8 +7,6 @@
       <v-flex>
         <RoomList></RoomList>
       </v-flex>
-    
-    
     </v-layout> 
   </div>
 </template>

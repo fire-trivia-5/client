@@ -14,7 +14,7 @@
             @click="createUser"
             class="button"
             style="background:blue; color:white;"
-            :href="room.id" 
+            :href="'/'+room.id" 
             >
             create
             </v-btn>
