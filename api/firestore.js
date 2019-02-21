@@ -16,6 +16,17 @@
 
 // export default db
 
+// import firebase from 'firebase'
+// import dotenv from 'dotenv'
+// dotenv.config()
+// let config = {
+//   apiKey: 'AIzaSyBA9NHOXB9Yaa7xWu3jxUyqlSARN9992Us',
+//   authDomain: 'afire-trivia-5.firebaseapp.com',
+//   databaseURL: 'https://fire-trivia-5.firebaseio.com',
+//   projectId: 'fire-trivia-5',
+//   storageBucket: 'fire-trivia-5.appspot.com',
+//   messagingSenderId: 378872832063
+// }
 
 
 
@@ -25,12 +36,12 @@ require('firebase/firestore');
 // require('dotenv').config()
 var config = {
 
-  apiKey: "AIzaSyA1z4zJDX3U1RAu4S4Lia5BW1Ex9uT0KVA",
-  authDomain: "benk-s-ban.firebaseapp.com",
-  databaseURL: "https://benk-s-ban.firebaseio.com",
-  projectId: "benk-s-ban",
-  storageBucket: "benk-s-ban.appspot.com",
-  messagingSenderId: "487461851153"
+  apiKey: 'AIzaSyBA9NHOXB9Yaa7xWu3jxUyqlSARN9992Us',
+  authDomain: 'afire-trivia-5.firebaseapp.com',
+  databaseURL: 'https://fire-trivia-5.firebaseio.com',
+  projectId: 'fire-trivia-5',
+  storageBucket: 'fire-trivia-5.appspot.com',
+  messagingSenderId: 378872832063
 
 };
 firebase.initializeApp(config)
