@@ -1,6 +1,6 @@
 import firebase from 'firebase'
-require('dotenv').config()
-
+import dotenv from 'dotenv'
+dotenv.config()
 let config = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
