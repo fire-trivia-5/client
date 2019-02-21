@@ -17,9 +17,11 @@ export default new Vuex.Store({
     getRoom (context) {
       let rooms = []
       db
-        .collection('Rooms')
+        .collection('rooms')
         .onSnapShot(function (snapShots) {
           snapShots.forEach((snapShot) => {
+            console.log(snapShot);
+            
             rooms.push(snapShot.data())
           })
           context.commit('addRoom', rooms)
