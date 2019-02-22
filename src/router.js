@@ -21,6 +21,11 @@ export default new Router({
       path: '/:roomId',
       name: 'playingroom',
       component: () => import('./views/Play.vue')
+    },
+    {
+      path : '/result',
+      name : 'Result',
+      component : () => import('./views/Result.vue')
     }
   ]
 })
