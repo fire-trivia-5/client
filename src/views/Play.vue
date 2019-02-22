@@ -1,6 +1,8 @@
 <template>
   <div>
     <br>
+
+    <router-link to="/home">Home</router-link>
     <v-layout align-center justify-space-around row fill-height>
       <v-avatar size="80px" color="teal">
         <span class="white--text headline">C</span>

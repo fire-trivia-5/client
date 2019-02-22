@@ -9,8 +9,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'PlayRoom',
-      component: () => import('./views/Play.vue')
+      name: 'home',
+      component: () => import('./views/Home.vue')
+    },
+    {
+      path: '/waitingroom',
+      name: 'waitingRoom',
+      component: () => import('./views/WaitingRoom.vue')
+    },
+    {
+      path: '/playingroom',
+      name: 'playingroom',
+      component: () => import('./views/PlayingRoom.vue')
     }
   ]
 })
