@@ -82,7 +82,7 @@ export default new Vuex.Store({
     },
     createUser (name) {
       db
-        .collection ("Users")
+        .collection ('Users')
         .add({
           name: name
         })
@@ -96,10 +96,10 @@ export default new Vuex.Store({
     setUser ({ commit }, payload) {
       commit('mutateDataUser', payload)
     },
-    changeScore({ commit }, playerscore) {
+    changeScore ({ commit }, playerscore) {
       commit('changeScore', playerscore)
     },
-    getQuiz(context) {
+    getQuiz (context) {
       axios
         .get('https://opentdb.com/api_token.php?command=request')
         .then(({ data }) => {
