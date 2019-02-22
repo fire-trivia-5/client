@@ -25,7 +25,7 @@
 
 <script>
 import { mapState } from "vuex";
-import db from '@/api/firestore.js'
+import db from '../../api/firestore.js'
 import Username from '@/components/Username.vue'
 export default {
   data() {

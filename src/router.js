@@ -12,15 +12,15 @@ export default new Router({
       name: 'home',
       component: () => import('./views/Home.vue')
     },
+    // {
+    //   path: '/waitingroom',
+    //   name: 'waitingRoom',
+    //   component: () => import('./views/WaitingRoom.vue')
+    // },
     {
-      path: '/waitingroom',
-      name: 'waitingRoom',
-      component: () => import('./views/WaitingRoom.vue')
-    },
-    {
-      path: '/playingroom',
+      path: '/:roomId',
       name: 'playingroom',
-      component: () => import('./views/PlayingRoom.vue')
+      component: () => import('./views/Play.vue')
     }
   ]
 })
