@@ -15,7 +15,7 @@
         <div style="margin-bottom:25px">
         <v-avatar size="150px" color="teal">
           <img src="@/assets/doraemon.jpg">
-          <!-- <span class="white--text headline">{{rooms[0].name}}</span> -->
+          <span class="white--text headline">{{rooms[0].name}}</span>
         </v-avatar>
         <v-avatar size="80px" color="teal">
           <span class="white--text headline">{{rooms[0].score}}</span>
@@ -28,7 +28,7 @@
         <v-avatar size="150px" color="teal">
 
            <img src="@/assets/sinchan.jpeg">
-          <!-- <span class="white--text headline">{{rooms[1].name}}</span> -->
+          <span class="white--text headline">{{rooms[1].name}}</span>
         </v-avatar>
         
         </div>
@@ -45,13 +45,15 @@
 
 <script>
 export default {
-  name: "Result",
+  name: "Result", 
   computed: {
     winner() {
+      console.log('masuk sini', this.$store.state.roomList);
+      
       //  return this.$store.state.rooms
       let score = 0;
       let winner = {};
-      this.rooms.forEach(player => {
+      this.$store.state.roomList.forEach(player => {
         if (player.score > score) {
           score = player.score;
           winner = player;

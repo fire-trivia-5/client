@@ -12,8 +12,8 @@
               dark blue-grey lighten-4 
               style="height: 95vh;background: linear-gradient(to right, #ffff1c, #00c3ff)">
 
-              <Result></Result>
-              <!-- <router-view></router-view> -->
+              <!-- <Result></Result> -->
+              <router-view></router-view>
             </v-card>
           </v-hover>
         </v-flex>
