@@ -69,7 +69,7 @@ export default {
         this.selectedRoom.players.push({name: value.username, score: 0})
         localStorage.setItem('name',value.username)
         localStorage.setItem('score',0)
-        console.log(this.selectedRoom)
+        // console.log(this.selectedRoom)
         this.updateRoom(this.selectedRoom)
         this.$store.dispatch('setUser', {
           room: value.room,

@@ -11,10 +11,10 @@
             ></v-text-field>
 
             <v-btn
-            @click="createUser"
+            @click="createUser(room.id)"
             class="button"
             style="background:blue; color:white;"
-            :href="'/'+room.id" 
+            
             >
             create
             </v-btn>
@@ -33,10 +33,12 @@ export default {
         }
     },
     methods: {
-        createUser(){
-            console.log('masuk')
-            this.$emit('username', {username: this.name, room: this.room})
+        createUser(id){
+            
+            this.$store.dispatch('addUser', {username: this.name, room: this.room} )
+            // this.$emit('username', {username: this.name, room: this.room})
             this.name = ''
+            this.$router.push({path: `/${id}`})
         }
     }
 }

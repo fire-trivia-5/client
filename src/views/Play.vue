@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <v-layout align-center justify-space-around row fill-height>
+    <v-layout align-center justify-space-around row fill-height >
       <v-avatar size="80px" color="teal">
         <span class="white--text headline">{{room.players[0].name}}</span>
       </v-avatar>
@@ -10,9 +10,9 @@
         <span class="white--text headline">{{timer}}</span>
       </v-avatar>
       <v-avatar size="80px" color="teal">
-        <span class="white--text headline">{{room.players[1].name}}</span>
+        <span v-if="room.players[1]" class="white--text headline">{{room.players[1].name}}</span>
       </v-avatar>
-         <h1>{{room.players[1].score}}</h1>   
+         <h1 v-if="room.players[1]">{{room.players[1].score}}</h1>   
     </v-layout>
     <br>
     <v-layout row wrap>

@@ -42,7 +42,8 @@ export default new Vuex.Store({
     },
     finishGame (state) {
       router.push({ path: '/' })
-    }
+    },
+    
   },
   actions: {
     createRoom ({ commit }, dataObj) {
@@ -111,6 +112,31 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err)
         })
+    },
+    addUser (state, payload) {
+      
+          db
+          .collection("Rooms").doc(`${payload.room.id}`)
+          .set({players: [{name : payload.username, score : 0}]},
+            { merge:true })
+          .then(() => {
+            console.log('success')
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
+        
+    },
+    updateRoom(value) {
+      db
+        .collection("Rooms").doc(`${value.id}`)
+        .update(value)
+        .then((docRef) => {
+          console.log('success')
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
     }
   }
 })
