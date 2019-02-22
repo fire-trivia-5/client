@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import db from '../api/firestore'
 import axios from 'axios'
+import router from './router'
 
 Vue.use(Vuex)
 
@@ -13,24 +14,27 @@ export default new Vuex.Store({
     dataUser: {}
   },
   mutations: {
-    mutateRoom (state, payload) {
+    mutateRoom(state, payload) {
       state.roomList = payload
     },
-    initialData (state, arrRoom) {
+    initialData(state, arrRoom) {
       state.roomList = arrRoom
     },
-    mutateDataUser (state, payload) {
+    mutateDataUser(state, payload) {
       state.dataUser = payload
     },
-    changeScore (state, playerscore) {
+    changeScore(state, playerscore) {
       state.playerscore = playerscore
     },
-    addQuiz (state, payload) {
+    addQuiz(state, payload) {
       state.quiz = payload
+    },
+    finishGame(state) {
+      router.push({ path: '/' })
     }
   },
   actions: {
-    createRoom ({ commit }, dataObj) {
+    createRoom({ commit }, dataObj) {
       db
         .collection('Rooms')
         .add({
@@ -55,7 +59,7 @@ export default new Vuex.Store({
           console.error(`error writing document: ${err}`)
         })
     },
-    getRoom ({ commit }) {
+    getRoom({ commit }) {
       db
         .collection('Rooms')
         .onSnapshot(function (querySnapshot) {
@@ -65,26 +69,26 @@ export default new Vuex.Store({
           commit('initialData', data)
         })
     },
-    createUser (name) {
+    createUser(name) {
       db
-        .collection ("Users")
-        .add ({
-          name : name
+        .collection("Users")
+        .add({
+          name: name
         })
-        .then ((document) => {
-          console.log (`document successfuly written with id ${document.id}`)
+        .then((document) => {
+          console.log(`document successfuly written with id ${document.id}`)
         })
-        .catch (err => {
-          console.log (`error writing document ${err}`)
+        .catch(err => {
+          console.log(`error writing document ${err}`)
         })
     },
-    setUser ({ commit }, payload) {
+    setUser({ commit }, payload) {
       commit('mutateDataUser', payload)
     },
-    changeScore ({ commit }, playerscore) {
+    changeScore({ commit }, playerscore) {
       commit('changeScore', playerscore)
     },
-    getQuiz (context) {
+    getQuiz(context) {
       axios
         .get('https://opentdb.com/api_token.php?command=request')
         .then(({ data }) => {

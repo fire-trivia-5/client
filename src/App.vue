@@ -11,8 +11,9 @@
               :class="`elevation-${hover ? 12 : 2}`"
               dark blue-grey lighten-4 
               style="height: 95vh;background: linear-gradient(to right, #ffff1c, #00c3ff)">
-              <router-view></router-view>
 
+              <!-- <Result></Result> -->
+              <router-view></router-view>
             </v-card>
           </v-hover>
         </v-flex>
@@ -23,12 +24,19 @@
 <script>
 import Home from './views/Home.vue'
 import playingroom from './views/Play.vue'
+import Result from './views/Result.vue'
 
 export default {
   name: 'App',
+  // computed : {
+  //   page() {
+  //     return this.$store.state.page
+  //   }
+  // },
   components: {
     Home,
-    playingroom
+    playingroom,
+    Result
   }
 }
 </script>
