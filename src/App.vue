@@ -1,14 +1,17 @@
 <template>
   <v-app>
+    <audio controls autoplay style="display:none">
+      <source src="http://www.noiseaddicts.com/samples_1w72b820/290.mp3" type="audio/mpeg">
+    </audio>
       <v-container text-xs-center>
         <v-flex xs10 offset-xs1>
           <v-hover>
             <v-card 
               slot-scope="{ hover }"
               :class="`elevation-${hover ? 12 : 2}`"
-              dark blue-grey darken-4 
+              dark blue-grey lighten-4 
               style="height: 95vh;background: linear-gradient(to right, #ffff1c, #00c3ff)">
-              <PlayRoom></PlayRoom>
+              <Home/>
             </v-card>
           </v-hover>
         </v-flex>
