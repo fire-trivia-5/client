@@ -14,27 +14,38 @@ export default new Vuex.Store({
     dataUser: {}
   },
   mutations: {
-    mutateRoom(state, payload) {
+    updateScore (state, payload) {
+      for (let i = 0; i <= state.roomList.length - 1; i++) {
+        if (state.roomList[i].id === payload.roomId) {
+          for (let j = 0; j <= state.roomList[i].players.length - 1; j++) {
+            if (state.roomList[i].players[j].name === payload.player) {
+              state.roomList[i].players[j].score = Number(state.roomList[i].players[j].score) + 1
+            }
+          }
+        }
+      }
+    },
+    mutateRoom (state, payload) {
       state.roomList = payload
     },
-    initialData(state, arrRoom) {
+    initialData (state, arrRoom) {
       state.roomList = arrRoom
     },
-    mutateDataUser(state, payload) {
+    mutateDataUser (state, payload) {
       state.dataUser = payload
     },
-    changeScore(state, playerscore) {
+    changeScore (state, playerscore) {
       state.playerscore = playerscore
     },
-    addQuiz(state, payload) {
+    addQuiz (state, payload) {
       state.quiz = payload
     },
-    finishGame(state) {
+    finishGame (state) {
       router.push({ path: '/' })
     }
   },
   actions: {
-    createRoom({ commit }, dataObj) {
+    createRoom ({ commit }, dataObj) {
       db
         .collection('Rooms')
         .add({
@@ -59,7 +70,7 @@ export default new Vuex.Store({
           console.error(`error writing document: ${err}`)
         })
     },
-    getRoom({ commit }) {
+    getRoom ({ commit }) {
       db
         .collection('Rooms')
         .onSnapshot(function (querySnapshot) {
@@ -69,9 +80,9 @@ export default new Vuex.Store({
           commit('initialData', data)
         })
     },
-    createUser(name) {
+    createUser (name) {
       db
-        .collection("Users")
+        .collection ("Users")
         .add({
           name: name
         })
@@ -82,7 +93,7 @@ export default new Vuex.Store({
           console.log(`error writing document ${err}`)
         })
     },
-    setUser({ commit }, payload) {
+    setUser ({ commit }, payload) {
       commit('mutateDataUser', payload)
     },
     changeScore({ commit }, playerscore) {

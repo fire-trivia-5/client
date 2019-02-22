@@ -8,6 +8,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/:roomId',
+      name: 'playingroom',
+      component: () => import('./views/Play.vue')
+    },
+    {
       path: '/',
       name: 'home',
       component: () => import('./views/Home.vue')
@@ -23,9 +28,9 @@ export default new Router({
       component: () => import('./views/Play.vue')
     },
     {
-      path : '/result',
-      name : 'result',
-      component : () => import('./views/Result.vue')
+      path: '/:roomId/result',
+      name: 'result',
+      component: () => import('./views/Result.vue')
     }
   ]
 })

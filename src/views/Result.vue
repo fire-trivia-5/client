@@ -14,7 +14,7 @@
         <br>
         <div style="margin-bottom:25px">
         <v-avatar size="150px" color="teal">
-          <img src="@/assets/doraemon.jpg">
+          <!-- <img src="@/assets/doraemon.jpg"> -->
           <span class="white--text headline">{{rooms[0].name}}</span>
         </v-avatar>
         <v-avatar size="80px" color="teal">
@@ -27,7 +27,7 @@
         </v-avatar>
         <v-avatar size="150px" color="teal">
 
-           <img src="@/assets/sinchan.jpeg">
+           <!-- <img src="@/assets/sinchan.jpeg"> -->
           <span class="white--text headline">{{rooms[1].name}}</span>
         </v-avatar>
         
@@ -53,18 +53,32 @@ export default {
       //  return this.$store.state.rooms
       let score = 0;
       let winner = {};
-      this.$store.state.roomList.forEach(player => {
-        if (player.score > score) {
-          score = player.score;
-          winner = player;
+      let rooms = this.$store.state.roomList
+      let finalPlayerData = []
+      for (let i = 0; i <= rooms.length-1; i++) {
+        if(rooms[i].id === this.$route.params.roomId) {
+          console.log('======', rooms[i])
+          for (let j = 0; j <= rooms[i].players.length-1; j++) {
+            if(rooms[i].players[j].score > score) {
+              score = rooms[i].score;
+              winner = rooms[i].players[j]
+            }
+          }
         }
-      });
+      }
+      console.log(winner, this.$route.params.roomId)
       return winner;
     },
     rooms() {
+      let rooms = this.$store.state.roomList
+      let finalPlayerData = []
+      for (let i = 0; i <= rooms.length-1; i++) {
+        if(rooms[i].id === this.$route.params.roomId) {
+          finalPlayerData = rooms[i].players
+        }
+      }
       // console.log(this.$store.state.rooms);
-
-      return this.$store.state.rooms;
+      return finalPlayerData
     },
     currentUser() {
       return localStorage.getItem('name')
