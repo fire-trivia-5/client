@@ -10,14 +10,6 @@ import firebase from 'firebase'
 //   messagingSenderId: process.env.MESSAGING_SENDER_ID
 // }
 
-var config = {
-  apiKey: 'AIzaSyARK9Hf61nYGXXyaV0s7xf9cKp4VubRhBw',
-  authDomain: 'active-fox-1549509381724.firebaseapp.com',
-  databaseURL: 'https://active-fox-1549509381724.firebaseio.com',
-  projectId: 'active-fox-1549509381724',
-  storageBucket: '',
-  messagingSenderId: '299733928822'
-}
 
 firebase.initializeApp(config)
 
